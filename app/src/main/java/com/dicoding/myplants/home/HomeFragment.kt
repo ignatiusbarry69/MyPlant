@@ -1,6 +1,7 @@
 package com.dicoding.myplants.home
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,10 +39,19 @@ class HomeFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        (activity as AppCompatActivity).supportActionBar?.hide()
 
         if (activity != null) {
 
+            binding.topAppBar.setOnMenuItemClickListener { menu ->
+                when (menu.itemId) {
+                    R.id.favorite -> {
+                        val uri = Uri.parse("myplants://favorite")
+                        startActivity(Intent(Intent.ACTION_VIEW, uri))
+                        true
+                    }
+                    else -> false
+                }
+            }
             val tourismAdapter = PlantAdapter()
             tourismAdapter.onItemClick = { selectedData ->
                 val b = Bundle()

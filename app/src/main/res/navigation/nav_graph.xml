@@ -18,5 +18,9 @@
         android:id="@+id/detailPlantFragment"
         android:name="com.dicoding.myplants.detail.DetailPlantFragment"
         android:label="fragment_detail_plant"
-        tools:layout="@layout/fragment_detail_plant" />
+        tools:layout="@layout/fragment_detail_plant">
+        <deepLink
+            android:id="@+id/deepLinkDetail"
+            app:uri="myplants://app/detail" />
+    </fragment>
 </navigation>

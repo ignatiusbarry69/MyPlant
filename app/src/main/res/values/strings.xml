@@ -2,4 +2,5 @@
     <string name="app_name">MyPlants</string>
     <string name="something_wrong">Oops.. something went wrong</string>
     <string name="favorite">Favorite</string>
+    <string name="title_favorite">Favorite</string>
 </resources>

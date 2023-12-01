@@ -3,6 +3,7 @@ package com.dicoding.myplants.detail
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,6 +65,12 @@ class DetailPlantFragment : Fragment() {
         val result = arguments?.getParcelable<Plant>("plant")
         if (result != null) {
             showDetailPlant(result)
+        }
+        val extras = activity?.intent?.extras
+        val value = extras?.getParcelable<Plant>("plant")
+//        Log.e("a", value?.imageUrl.toString())
+        if (value != null) {
+            showDetailPlant(value)
         }
     }
 

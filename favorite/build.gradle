@@ -8,7 +8,6 @@ plugins {
 apply from: '../shared_dependencies.gradle'
 
 android {
-    namespace 'com.example.myplants.favorite'
     compileSdkVersion 33
 
     defaultConfig {

@@ -24,32 +24,11 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailPlantFragment : Fragment() {
-
-//    private lateinit var binding: FragmentDetailPlantBinding
-//    private val detailPlantViewModel: DetailPlantViewModel by viewModels()
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        binding = FragmentDetailPlantBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//
-////        hapus kode berikut
-////        val factory = ViewModelFactory.getInstance(this)
-////        detailPlantViewModel = ViewModelProvider(this, factory)[DetailPlantViewModel::class.java]
-//
-//        val detailPlant = intent.getParcelableExtra<Plant>(EXTRA_DATA)
-//        showDetailPlant(detailPlant)
-//    }
-
     private val detailPlantViewModel: DetailPlantViewModel by viewModels()
 
     private var _binding: FragmentDetailPlantBinding? = null
     private val binding get() = _binding!!
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        (activity as AppCompatActivity).supportActionBar?.hide()
-//    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,15 +39,16 @@ class DetailPlantFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        (activity as AppCompatActivity).supportActionBar?.hide()
 
+        //when navigate with nav component
         val result = arguments?.getParcelable<Plant>("plant")
         if (result != null) {
             showDetailPlant(result)
         }
+
+        //when navigate with deeplink
         val extras = activity?.intent?.extras
         val value = extras?.getParcelable<Plant>("plant")
-//        Log.e("a", value?.imageUrl.toString())
         if (value != null) {
             showDetailPlant(value)
         }
@@ -82,7 +62,6 @@ class DetailPlantFragment : Fragment() {
     private fun showDetailPlant(detailPlant: Plant?) {
         detailPlant?.let {
             binding.toolbar.title = detailPlant.name
-//            binding.content.tvDetailDescription.text = detailPlant.description
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 binding.content.tvDetailDescription.text = Html.fromHtml(detailPlant.description, Html.FROM_HTML_MODE_LEGACY)
             } else {

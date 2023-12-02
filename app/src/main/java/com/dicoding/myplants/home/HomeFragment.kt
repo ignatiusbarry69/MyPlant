@@ -3,19 +3,21 @@ package com.dicoding.myplants.home
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.dicoding.myplants.R
 import com.dicoding.myplants.core.data.Resource
 import com.dicoding.myplants.core.ui.PlantAdapter
 import com.dicoding.myplants.databinding.FragmentHomeBinding
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
+import com.google.android.play.core.splitinstall.SplitInstallRequest
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,25 +35,24 @@ class HomeFragment: Fragment() {
         return binding.root
     }
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
-
             binding.topAppBar.setOnMenuItemClickListener { menu ->
                 when (menu.itemId) {
                     R.id.favorite -> {
-                        val uri = Uri.parse("myplants://favorite")
-                        startActivity(Intent(Intent.ACTION_VIEW, uri))
+                        try {
+                            installFavoriteModule()
+                        } catch (e: Exception) {
+                            Toast.makeText(requireContext(), "Module not found", Toast.LENGTH_SHORT).show()
+                        }
                         true
                     }
                     else -> false
                 }
             }
+
             val tourismAdapter = PlantAdapter()
             tourismAdapter.onItemClick = { selectedData ->
                 val b = Bundle()
@@ -79,10 +80,36 @@ class HomeFragment: Fragment() {
 
             with(binding.rvPlant) {
                 layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-//                setHasFixedSize(true)
                 adapter = tourismAdapter
             }
         }
+    }
+
+    private fun installFavoriteModule() {
+        val splitInstallManager = SplitInstallManagerFactory.create(requireContext())
+        val moduleFavorite = "favorite"
+        if (splitInstallManager.installedModules.contains(moduleFavorite)) {
+            moveToFavoriteActivity()
+            Toast.makeText(requireContext(), "Open module", Toast.LENGTH_SHORT).show()
+        } else {
+            val request = SplitInstallRequest.newBuilder()
+                .addModule(moduleFavorite)
+                .build()
+            splitInstallManager.startInstall(request)
+                .addOnSuccessListener {
+                    Toast.makeText(requireContext(), "Success installing module", Toast.LENGTH_SHORT).show()
+                    moveToFavoriteActivity()
+                }
+                .addOnFailureListener {
+                    Log.e("fail",it.toString())
+                    Toast.makeText(requireContext(), "Error installing module", Toast.LENGTH_SHORT).show()
+                }
+        }
+    }
+
+    private fun moveToFavoriteActivity() {
+        val uri = Uri.parse("myplants://favorite")
+        startActivity(Intent(Intent.ACTION_VIEW, uri))
     }
 
     override fun onDestroyView() {

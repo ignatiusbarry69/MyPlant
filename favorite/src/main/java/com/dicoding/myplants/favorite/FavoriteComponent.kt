@@ -1,4 +1,4 @@
-package com.example.myplants.favorite
+package com.dicoding.myplants.favorite
 
 import android.content.Context
 import com.dicoding.myplants.di.FavoriteModuleDependencies

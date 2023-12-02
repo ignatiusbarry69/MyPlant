@@ -1,4 +1,4 @@
-package com.example.myplants.favorite
+package com.dicoding.myplants.favorite
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

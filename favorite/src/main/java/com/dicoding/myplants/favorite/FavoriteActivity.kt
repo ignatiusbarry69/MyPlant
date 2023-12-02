@@ -1,4 +1,4 @@
-package com.example.myplants.favorite
+package com.dicoding.myplants.favorite
 
 import android.content.Intent
 import android.net.Uri
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.dicoding.myplants.core.ui.PlantAdapter
 import com.dicoding.myplants.detail.DetailPlantFragment
 import com.dicoding.myplants.di.FavoriteModuleDependencies
-import com.example.myplants.favorite.databinding.ActivityFavoriteBinding
+import com.dicoding.myplants.favorite.databinding.ActivityFavoriteBinding
 import dagger.hilt.android.EntryPointAccessors
 import javax.inject.Inject
 

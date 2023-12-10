@@ -3,23 +3,16 @@ package com.dicoding.myplants.detail
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
 import com.dicoding.myplants.R
-import com.dicoding.myplants.core.data.Resource
 import com.dicoding.myplants.core.domain.model.Plant
-import com.dicoding.myplants.core.ui.PlantAdapter
 import com.dicoding.myplants.databinding.FragmentDetailPlantBinding
-import com.dicoding.myplants.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -8,7 +8,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.dicoding.myplants.core.ui.PlantAdapter
-import com.dicoding.myplants.detail.DetailPlantFragment
 import com.dicoding.myplants.di.FavoriteModuleDependencies
 import com.dicoding.myplants.favorite.databinding.ActivityFavoriteBinding
 import dagger.hilt.android.EntryPointAccessors

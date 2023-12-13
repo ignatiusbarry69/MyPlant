@@ -55,7 +55,7 @@ class FavoriteActivity: AppCompatActivity() {
 
 
         favoriteViewModel.favoritePlant.observe(this) { dataPlant ->
-            tourismAdapter.setData(dataPlant)
+            tourismAdapter.submitList(dataPlant)
             binding.viewEmpty.root.visibility =
                 if (dataPlant.isNotEmpty()) View.GONE else View.VISIBLE
         }

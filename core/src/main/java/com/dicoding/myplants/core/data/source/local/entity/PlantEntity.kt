@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "plants")
 data class PlantEntity(
-    @PrimaryKey @NonNull @ColumnInfo (name = "id") var plantId: String,
+    @PrimaryKey @ColumnInfo (name = "id") var plantId: String,
     var name: String,
     var description: String,
     var growZoneNumber: Int,

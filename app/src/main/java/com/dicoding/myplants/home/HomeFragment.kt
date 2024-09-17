@@ -66,7 +66,7 @@ class HomeFragment: Fragment() {
                         is Resource.Loading -> binding.progressBar.visibility = View.VISIBLE
                         is Resource.Success -> {
                             binding.progressBar.visibility = View.GONE
-                            tourismAdapter.setData(tourism.data)
+                            tourismAdapter.submitList(tourism.data)
                         }
                         is Resource.Error -> {
                             binding.progressBar.visibility = View.GONE

@@ -2,7 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
     <fragment
@@ -19,8 +18,6 @@
         android:name="com.dicoding.myplants.detail.DetailPlantFragment"
         android:label="fragment_detail_plant"
         tools:layout="@layout/fragment_detail_plant">
-        <deepLink
-            android:id="@+id/deepLinkDetail"
-            app:uri="myplants://app/detail" />
+        <deepLink app:uri="myplants://app/detail" />
     </fragment>
 </navigation>
